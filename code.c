@@ -10,7 +10,7 @@ bool extractIPv4(const std::string& str,
                  unsigned long& outAddress,
                  int& outPort)
 {
-    // Default values for failure.
+    // Generated: Default values for failure.
     outAddress = 0;
     outPort = -1;
 
@@ -18,15 +18,15 @@ bool extractIPv4(const std::string& str,
     unsigned long foundAddress = 0;
     int foundPort = -1;
 
-    // Look at every position in the string as a possible
+    // Generated: Look at every position in the string as a possible
     // beginning of an IPv4 address.
     for (size_t i = 0; i < str.length(); i++)
     {
-        // An address must begin with a digit.
+        // Generated: An address must begin with a digit.
         if (!std::isdigit(static_cast<unsigned char>(str[i])))
             continue;
 
-        // Do not start an address immediately after a period
+        // Generated: Do not start an address immediately after a period
         // or colon. This prevents accepting part of a bad token.
         if (i > 0 &&
             (std::isdigit(static_cast<unsigned char>(str[i - 1])) ||
@@ -41,11 +41,11 @@ bool extractIPv4(const std::string& str,
         bool valid = true;
 
         // ----------------------------------------------------
-        // Parse exactly four octets.
+        // Generated: Parse exactly four octets.
         // ----------------------------------------------------
         for (int octet = 0; octet < 4 && valid; octet++)
         {
-            // Each octet must start with a digit.
+            // Generated: Each octet must start with a digit.
             if (pos >= str.length() ||
                 !std::isdigit(static_cast<unsigned char>(str[pos])))
             {
@@ -57,18 +57,18 @@ bool extractIPv4(const std::string& str,
             int value = 0;
             int digitCount = 0;
 
-            // Read all consecutive digits.
+            // Generated: Read all consecutive digits.
             while (pos < str.length() &&
                    std::isdigit(static_cast<unsigned char>(str[pos])))
             {
-                // More than 3 digits cannot be a valid octet.
+                // Generated: More than 3 digits cannot be a valid octet.
                 if (digitCount == 3)
                 {
                     valid = false;
                     break;
                 }
 
-                // Convert the digit manually.
+                // Generated: Convert the digit manually.
                 int digit = str[pos] - '0';
 
                 value = value * 10 + digit;
@@ -80,14 +80,14 @@ bool extractIPv4(const std::string& str,
             if (!valid)
                 break;
 
-            // No leading zero unless the octet is exactly "0".
+            // Generated: No leading zero unless the octet is exactly "0".
             if (digitCount > 1 && str[octetStart] == '0')
             {
                 valid = false;
                 break;
             }
 
-            // Octet must be between 0 and 255.
+            // Generated: Octet must be between 0 and 255.
             if (value > 255)
             {
                 valid = false;
@@ -96,7 +96,7 @@ bool extractIPv4(const std::string& str,
 
             octets[octet] = value;
 
-            // The first three octets must be followed by periods.
+            // Generated: The first three octets must be followed by periods.
             if (octet < 3)
             {
                 if (pos >= str.length() || str[pos] != '.')
@@ -110,22 +110,22 @@ bool extractIPv4(const std::string& str,
             }
         }
 
-        // If the IPv4 portion failed, try the next possible
+        // Generated: If the IPv4 portion failed, try the next possible
         // starting position in the input line.
         if (!valid)
             continue;
 
         // ----------------------------------------------------
-        // Parse optional port.
+        // Generated: Parse optional port.
         // ----------------------------------------------------
         int candidatePort = -1;
 
         if (pos < str.length() && str[pos] == ':')
         {
-            // Move past the colon.
+            // Generated: Move past the colon.
             pos++;
 
-            // A colon MUST be followed by a port.
+            // Generated: A colon MUST be followed by a port.
             if (pos >= str.length() ||
                 !std::isdigit(static_cast<unsigned char>(str[pos])))
             {
@@ -137,11 +137,11 @@ bool extractIPv4(const std::string& str,
                 int portValue = 0;
                 int digitCount = 0;
 
-                // Read all port digits.
+                // Generated: Read all port digits.
                 while (pos < str.length() &&
                        std::isdigit(static_cast<unsigned char>(str[pos])))
                 {
-                    // Port can have at most 5 digits.
+                    // Generated: Port can have at most 5 digits.
                     if (digitCount == 5)
                     {
                         valid = false;
@@ -150,7 +150,7 @@ bool extractIPv4(const std::string& str,
 
                     int digit = str[pos] - '0';
 
-                    // Manual number accumulation.
+                    // Generated: Manual number accumulation.
                     portValue = portValue * 10 + digit;
 
                     digitCount++;
@@ -159,13 +159,13 @@ bool extractIPv4(const std::string& str,
 
                 if (valid)
                 {
-                    // No leading zero unless port is exactly "0".
+                    // Generated: No leading zero unless port is exactly "0".
                     if (digitCount > 1 && str[portStart] == '0')
                     {
                         valid = false;
                     }
 
-                    // Valid port range is 0 through 65535.
+                    // Generated: Valid port range is 0 through 65535.
                     if (portValue > 65535)
                     {
                         valid = false;
@@ -183,7 +183,7 @@ bool extractIPv4(const std::string& str,
             continue;
 
         // ----------------------------------------------------
-        // Check the right boundary.
+        // Generated: Check the right boundary.
         //
         // A period or colon directly after the candidate means
         // the token is malformed.
@@ -195,7 +195,7 @@ bool extractIPv4(const std::string& str,
         }
 
         // ----------------------------------------------------
-        // Build the 32-bit address.
+        // Generated: Build the 32-bit address.
         //
         // A.B.C.D becomes:
         //
@@ -208,7 +208,7 @@ bool extractIPv4(const std::string& str,
              static_cast<unsigned long>(octets[3]);
 
         // ----------------------------------------------------
-        // Exactly one valid address is allowed.
+        // Generated: Exactly one valid address is allowed.
         // ----------------------------------------------------
         if (found)
         {
@@ -217,12 +217,12 @@ bool extractIPv4(const std::string& str,
             return false;
         }
 
-        // Save the valid candidate.
+        // Generated: Save the valid candidate.
         found = true;
         foundAddress = candidateAddress;
         foundPort = candidatePort;
 
-        // Move i to the end of this candidate so we do not
+        // Generated: Move i to the end of this candidate so we do not
         // accidentally examine digits inside the same address
         // as new starting positions.
         if (pos > 0)
@@ -230,7 +230,7 @@ bool extractIPv4(const std::string& str,
     }
 
     // --------------------------------------------------------
-    // Return the result.
+    // Generated: Return the result.
     // --------------------------------------------------------
     if (found)
     {
@@ -239,7 +239,7 @@ bool extractIPv4(const std::string& str,
         return true;
     }
 
-    // Failure values were already assigned at the beginning.
+    // Generated: Failure values were already assigned at the beginning.
     return false;
 }
 
@@ -253,7 +253,7 @@ int main()
         std::cout << "Enter text: ";
         std::getline(std::cin, input);
 
-        // Stop when the user enters exactly END.
+        // Generated: Stop when the user enters exactly END.
         if (input == "END")
         {
             std::cout << "Program terminated." << std::endl;
@@ -265,7 +265,7 @@ int main()
 
         if (extractIPv4(input, address, port))
         {
-            // Recover each octet from the 32-bit address.
+            // Generated: Recover each octet from the 32-bit address.
             unsigned long a = (address >> 24) & 0xFF;
             unsigned long b = (address >> 16) & 0xFF;
             unsigned long c = (address >> 8) & 0xFF;
