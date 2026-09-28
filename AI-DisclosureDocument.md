@@ -2,6 +2,9 @@
 ## GAI: ChatGPT
   - ### Model: GPT-5.6 Sol.
 
+## Bug Note:
+ Upon testing code with cases, a bug was found causing it to accept IP addresses it shouldn't. I since have fixed the bug, the fix is outlined in the code
+
 ## Code Generation
 ### Prompt 1
 "Give me an outline of a C++ program to read a line of text and return true or false based on if an address is present. An address is four octets separated by periods (octet.octet.octet.octet), each octet 1–3 digits, value 0–255, no leading zero unless the value is exactly 0. An optional :port may follow the fourth octet: 1–5 digits, value 0–65535, same leading-zero rule. If a colon is present, the port must be fully valid or the entire match — address included — is rejected. Use this starter function<br>
@@ -506,5 +509,3 @@ int main()
     return 0;
 }
 ```
-## Bug Note:
- Upon testing code with cases, a bug was found causing it to accept IP addresses it shouldn't. I since have fixed the bug, the fix is outlined in the code
