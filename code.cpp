@@ -42,15 +42,6 @@ bool extractIPv4(const std::string& str,
         if (!std::isdigit(static_cast<unsigned char>(str[i])))
             continue;
 
-        // The mistake ChatGPT made was this line
-        // Originally:
-        // if (i > 0 && (str[i - 1] == '.' || str[i - 1] == ':'))
-        //        continue;
-        // This caused it to accept 192.168.1.1.1 despite being invalid
-        // It Accepted because it saw 68.1.1.1 as valid
-        // I made it reject a starting position if it was in the middle of digits
-        // std::isdigit(static_cast<unsigned char>(str[i - 1])) was added to stop it from starting in the middle.
-
         // Make sure to not start an address in the middle of a number or after a period or colon
         if (i > 0 && (std::isdigit(static_cast<unsigned char>(str[i - 1])) || str[i - 1] == '.' || str[i - 1] == ':'))
         {
