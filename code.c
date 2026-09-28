@@ -1,3 +1,16 @@
+#
+#  SEMESTER:        EECS 581 Fall 2026
+#  ASSIGNMENT:      Extracting IPv4 Addresses from Noisy Text
+#  FILE:            code.c
+#
+#  DESCRIPTION:     Searches for a valid IPv4 Address in a string of text
+#                   
+#  AUTHOR:          Carter Ruff
+#  SOURCES:         ChatGPT (GPT-5.6 Sol)
+#  CREATION DATE:   09/27/2026
+#
+# Note: Any comments containing "Generated:" were added by ChatGPT
+
 #include <iostream>
 #include <string>
 #include <cctype>
