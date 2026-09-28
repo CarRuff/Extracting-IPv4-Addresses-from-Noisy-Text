@@ -1,7 +1,7 @@
 /*
   SEMESTER:        EECS 581 Fall 2026
   ASSIGNMENT:      Extracting IPv4 Addresses from Noisy Text
-  FILE:            code.c
+  FILE:            code.cpp
 
   DESCRIPTION:     Searches for a valid IPv4 Address in a string of text
 
