@@ -15,8 +15,8 @@ Any address-parsing library function: inet_aton, inet_pton, inet_addr, or equiva
 Any regular-expression facility (std::regex, POSIX regex.h, or similar) — the parsing and validation logic must be your own character-by-character code, not a pattern matched by a library.
 Standard character-classification functions (isdigit, etc.) are fine to use. 
 <br>
-Requirements: On success, print: Extracted IPv4 address: A.B.C.D (decimal value: N, port: P) where N is the 32-bit decimal value and P is the port number or the literal text none. Exactly one valid address may be extracted per input line; everything else in the line is either garbage (skipped) or part of a candidate token that fails validation. Continue to as user for a line until user types END"
-<br> send the full outline at the end for review <br>
+Requirements: On success, print: Extracted IPv4 address: A.B.C.D (decimal value: N, port: P) where N is the 32-bit decimal value and P is the port number or the literal text none. Exactly one valid address may be extracted per input line; everything else in the line is either garbage (skipped) or part of a candidate token that fails validation. Continue to as user for a line until user types END
+<br> send the full outline at the end for review <br>"
 
 ### Output 1:
 
