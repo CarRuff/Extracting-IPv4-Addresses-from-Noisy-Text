@@ -1,6 +1,6 @@
 # IPv4 Test Cases
 
-| Input | Result |
+| Input | Expected Result |
 |---|---|
 | `192.168.1.1` | Valid |
 | `192.168.1.1:9` | Valid |
