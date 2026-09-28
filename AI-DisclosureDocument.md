@@ -6,7 +6,7 @@
 I reviewed every line of code and understand what each line and the program as a whole does. The code has been tested with test cases and works as intended. 
 
 ## Bug Note:
- Upon testing code with cases, a bug was found causing it to accept IP addresses it shouldn't. I since have fixed the bug, the fix is outlined in the code
+ Upon testing code with test cases, a bug was found in code.cpp. The problem was it was accepting 192.168.1.1.1 as valid because it saw 68.1.1.1 as valid. To fix it I added a section to line 46 in code.cpp to make sure the starting position wasn't in the middle of an already existing number set. The fix ```std::isdigit(static_cast<unsigned char>(str[i - 1]))``` was added by me.
 
 # Code Generation
 ## Prompt 1
